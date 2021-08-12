@@ -69,10 +69,13 @@ if len(sys.argv) < 2:
 
 grocery_list = GroceryList()
 
+def check_arg_length(n):
+    if len(sys.argv) < n + 2:
+        usage()
+
 cmd = sys.argv[1]
 if cmd == "add":
-    if len(sys.argv) < 4:
-        usage()
+    check_arg_length(2)
     try:
         count = int(sys.argv[2])
     except:
@@ -80,13 +83,10 @@ if cmd == "add":
     item = ' '.join(sys.argv[3:])
     grocery_list.add(count, item)
 elif cmd == "list":
-    if len(sys.argv) != 2:
-        usage()
+    check_arg_length(0)
     grocery_list.display()
 elif cmd == "clear":
-    if len(sys.argv) != 2:
-        usage()
+    check_arg_length(0)
     grocery_list.clear()
 
 grocery_list.save()
-    
